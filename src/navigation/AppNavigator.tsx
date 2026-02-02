@@ -3,9 +3,10 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { Ionicons } from '@expo/vector-icons';
 
-import { ExploreScreen, FavoritesScreen } from '../screens';
-import { colors } from '../theme/colors';
+import { ExploreScreen, FavoritesScreen } from '@screens';
+import { colors } from '@theme/colors';
 
 export type RootTabParamList = {
   Explore: undefined;
@@ -45,6 +46,13 @@ export const AppNavigator = () => {
             options={{
               tabBarLabel: 'Explorar',
               tabBarAccessibilityLabel: 'Explorar Pokémon',
+              tabBarIcon: ({ color, size, focused }) => (
+                <Ionicons
+                  name={focused ? 'compass' : 'compass-outline'}
+                  size={size}
+                  color={color}
+                />
+              ),
             }}
           >
             {() => (
@@ -73,6 +81,13 @@ export const AppNavigator = () => {
             options={{
               tabBarLabel: 'Favoritos',
               tabBarAccessibilityLabel: 'Ver Pokémon favoritos',
+              tabBarIcon: ({ color, size, focused }) => (
+                <Ionicons
+                  name={focused ? 'heart' : 'heart-outline'}
+                  size={size}
+                  color={color}
+                />
+              ),
             }}
           >
             {() => (
@@ -113,12 +128,5 @@ const styles = StyleSheet.create({
   tabBarLabel: {
     fontSize: 12,
     fontWeight: '600',
-  },
-  tabIcon: {
-    fontSize: 24,
-    opacity: 0.6,
-  },
-  tabIconFocused: {
-    opacity: 1,
   },
 });

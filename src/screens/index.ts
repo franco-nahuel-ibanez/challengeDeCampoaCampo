@@ -1,2 +1,2 @@
-export * from './ExploreScreen';
-export * from './FavoritesScreen';
+export { ExploreScreen } from './ExploreScreen';
+export { FavoritesScreen } from './FavoritesScreen';
