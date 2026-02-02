@@ -9,9 +9,6 @@ module.exports = function(api) {
           root: ['./'],
           alias: {
             '@': './src',
-            '@screens': './src/screens',
-            '@navigation': './src/navigation',
-            '@theme': './src/theme',
           },
           extensions: [
             '.ios.ts',

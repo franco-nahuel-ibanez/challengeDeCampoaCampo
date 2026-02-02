@@ -4,9 +4,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
-
-import { ExploreScreen, FavoritesScreen } from '@screens';
-import { colors } from '@theme/colors';
+import { ExploreScreen, FavoritesScreen } from '@/screens';
+import { colors } from '@/theme/colors';
 
 export type RootTabParamList = {
   Explore: undefined;
