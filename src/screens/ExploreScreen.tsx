@@ -1,17 +1,16 @@
 import { useEffect, useState, useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
-
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { PokemonList } from '@/components';
-import { OfflineBanner } from '../components/ui/OfflineBanner';
-import { EmptyState } from '../components/ui/EmptyState';
-import { SearchBar } from '../components/ui/SearchBar';
+import { OfflineBanner } from '@/components/ui/OfflineBanner';
+import { EmptyState } from '@/components/ui/EmptyState';
+import { SearchBar } from '@/components/ui/SearchBar';
 import { useNetworkStatus } from '../hooks/useNetworkStatus';
-import { useNetworkListener } from '../hooks/useNetworkListener';
-import { usePokemonStore } from '../store/usePokemonStore';
-import type { Pokemon } from '../types/pokemon';
-import type { ExploreStackParamList } from '../navigation/AppNavigator';
+import { useNetworkListener } from '@/hooks/useNetworkListener';
+import { usePokemonStore } from '@/store/usePokemonStore';
+import { Pokemon } from '@/types/pokemon';
+import { ExploreStackParamList } from '@/navigation/AppNavigator';
 
 type ExploreScreenNavigationProp = NativeStackNavigationProp<ExploreStackParamList>;
 

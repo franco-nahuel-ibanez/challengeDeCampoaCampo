@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import type { Pokemon } from '@/types/pokemon';
+import { Pokemon } from '@/types/pokemon';
 import { STORAGE_KEYS } from '@/utils/constants';
 
 

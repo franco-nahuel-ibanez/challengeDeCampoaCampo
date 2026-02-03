@@ -9,7 +9,7 @@ import {
   getFavorites,
 } from '@/service/storage';
 import { PAGINATION } from '@/utils/constants';
-import type { Pokemon, PokemonDetail, PokemonListResult } from '@/types/pokemon';
+import { Pokemon, PokemonDetail, PokemonListResult } from '@/types/pokemon';
 
 interface PokemonStore {
   pokemon: Pokemon[];

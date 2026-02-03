@@ -1,8 +1,8 @@
 import { StyleSheet, View, ActivityIndicator } from 'react-native';
 import { FlashList } from '@shopify/flash-list';
 import { PokemonCard } from './PokemonCard';
-import { usePokemonStore } from '../../store/usePokemonStore';
-import type { Pokemon } from '../../types/pokemon';
+import { usePokemonStore } from '@/store/usePokemonStore';
+import { Pokemon } from '@/types/pokemon';
 
 interface PokemonListProps {
   onPokemonPress?: (pokemon: Pokemon) => void;
@@ -37,12 +37,14 @@ export const PokemonList = ({ onPokemonPress, pokemon: externalPokemon }: Pokemo
   };
 
   const renderItem = ({ item }: { item: Pokemon }) => (
-    <PokemonCard
-      pokemon={item}
-      isFavorite={favoriteIds.has(item.id)}
-      onFavoritePress={() => handleFavoritePress(item)}
-      onPress={() => onPokemonPress?.(item)}
-    />
+    <View style={styles.cardWrapper}>
+      <PokemonCard
+        pokemon={item}
+        isFavorite={favoriteIds.has(item.id)}
+        onFavoritePress={() => handleFavoritePress(item)}
+        onPress={() => onPokemonPress?.(item)}
+      />
+    </View>
   );
 
   const renderFooter = () => {
@@ -71,6 +73,10 @@ export const PokemonList = ({ onPokemonPress, pokemon: externalPokemon }: Pokemo
 const styles = StyleSheet.create({
   listContent: {
     paddingVertical: 8,
+    paddingHorizontal: 26,
+  },
+  cardWrapper: {
+    marginBottom: 16,
   },
   footer: {
     paddingVertical: 20,

@@ -1,20 +1,14 @@
 import { POKEMON_IMAGES } from '../utils/constants';
-import type {
+import {
   PokemonDetail,
   PokemonDetailResponse,
 } from '@/types';
 
-// ============================================
-// Helpers
-// ============================================
-
-/** Extrae el ID del Pokémon desde la URL */
 export const extractIdFromUrl = (url: string): number => {
   const matches = url.match(/\/pokemon\/(\d+)\//);
   return matches ? parseInt(matches[1], 10) : 0;
 };
 
-/** Transforma la respuesta raw de detalle al modelo de la app */
 export const transformToPokemonDetail = (raw: PokemonDetailResponse): PokemonDetail => ({
   id: raw.id,
   name: raw.name,

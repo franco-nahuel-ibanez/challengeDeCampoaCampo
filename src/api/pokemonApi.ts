@@ -1,12 +1,12 @@
 import { PAGINATION, POKEMON_IMAGES } from '@/utils/constants';
 import { extractIdFromUrl, transformToPokemonDetail } from '@/helpers/pokemonTransformers';
 import { apiClient } from '@/api/apiClient';
-import type {
+import {
   Pokemon,
   PokemonDetail,
   PaginationParams,
 } from '@/types';
-import type {
+import {
   PokemonDetailResponse,
   PokemonListResponse,
   PokemonListResult,

@@ -4,6 +4,7 @@ import {
   Text,
   Pressable,
   StyleSheet,
+  type ViewStyle,
 } from 'react-native';
 import { Image } from 'expo-image';
 import { Ionicons } from '@expo/vector-icons';
@@ -15,6 +16,7 @@ export interface PokemonCardProps {
   onPress: () => void;
   isFavorite?: boolean;
   onFavoritePress?: () => void;
+  style?: ViewStyle;
 }
 
 export const PokemonCard: React.FC<PokemonCardProps> = ({
@@ -22,6 +24,7 @@ export const PokemonCard: React.FC<PokemonCardProps> = ({
   onPress,
   isFavorite = false,
   onFavoritePress,
+  style,
 }) => {
   const displayName =
     pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
@@ -34,7 +37,11 @@ export const PokemonCard: React.FC<PokemonCardProps> = ({
   return (
     <Pressable
       onPress={onPress}
-      style={({ pressed }) => [styles.card, pressed && styles.cardPressed]}
+      style={({ pressed }) => [
+        styles.card,
+        pressed && styles.cardPressed,
+        style,
+      ]}
       accessibilityRole="button"
       accessibilityLabel={`Ver detalle de ${pokemon.name}`}
     >
