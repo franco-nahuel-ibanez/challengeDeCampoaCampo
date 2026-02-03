@@ -79,7 +79,7 @@ export const AppNavigator = () => {
                 <ExploreStack.Screen
                   name="Detail"
                   component={DetailScreen}
-                  options={{ title: 'Detalle', headerBackTitle: 'Volver' }}
+                  options={{ title: 'Detalle', headerBackTitleVisible: false }}
                 />
                 <ExploreStack.Screen
                   name="NoConnection"
@@ -124,7 +124,7 @@ export const AppNavigator = () => {
                 <FavoritesStack.Screen
                   name="Detail"
                   component={DetailScreen}
-                  options={{ title: 'Detalle', headerBackTitle: 'Volver' }}
+                  options={{ title: 'Detalle', headerBackTitleVisible: false }}
                 />
                 <FavoritesStack.Screen
                   name="NoConnection"

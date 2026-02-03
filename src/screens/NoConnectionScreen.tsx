@@ -1,10 +1,21 @@
+import { useEffect, useRef } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
+import { useNetworkStatus } from '@/hooks/useNetworkStatus';
 import { colors } from '@/theme/colors';
 
 export const NoConnectionScreen = () => {
   const navigation = useNavigation();
+  const { isConnected } = useNetworkStatus();
+  const prevConnectedRef = useRef<boolean | null>(null);
+
+  useEffect(() => {
+    if (prevConnectedRef.current === false && isConnected === true) {
+      navigation.goBack();
+    }
+    prevConnectedRef.current = isConnected;
+  }, [isConnected, navigation]);
 
   const handleGoBack = () => {
     navigation.goBack();
