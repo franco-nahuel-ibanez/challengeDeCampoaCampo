@@ -16,3 +16,8 @@ export const POKEMON_IMAGES = {
   ARTWORK_URL: (id: number) =>
     `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`,
 } as const;
+
+export const STORAGE_KEYS = {
+  POKEMONS: '@pokedex/pokemons',
+  FAVORITES: '@pokedex/favorites',
+} as const;
