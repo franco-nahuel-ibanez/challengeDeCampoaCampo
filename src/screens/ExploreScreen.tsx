@@ -42,8 +42,10 @@ export const ExploreScreen = () => {
 
   const handlePokemonPress = (pokemon: Pokemon) => {
     if (!isConnected) {
+      navigation.navigate('NoConnection');
       return;
     }
+    navigation.navigate('Detail', { pokemonId: pokemon.id });
   };
 
   if (!isInitialized) {

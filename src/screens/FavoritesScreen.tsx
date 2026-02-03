@@ -31,12 +31,11 @@ export const FavoritesScreen = () => {
 
   const handlePokemonPress = (pokemon: Pokemon) => {
     if (!isConnected) {
-      //navigation.navigate('NoConnection');
+      navigation.navigate('NoConnection');
       return;
     }
 
-    // Navegar a pantalla de detalle
-    //navigation.navigate('Detail', { pokemonId: pokemon.id });
+    navigation.navigate('Detail', { pokemonId: pokemon.id });
   };
 
   const renderItem = ({ item }: { item: Pokemon }) => (

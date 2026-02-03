@@ -6,6 +6,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { ExploreScreen, FavoritesScreen } from '@/screens';
 import { colors } from '@/theme/colors';
+import { DetailScreen } from '@/screens/DetailScreen';
+import { NoConnectionScreen } from '@/screens/NoConnectionScreen';
 
 export type RootTabParamList = {
   Explore: undefined;
@@ -14,10 +16,14 @@ export type RootTabParamList = {
 
 export type ExploreStackParamList = {
   ExploreMain: undefined;
+  Detail: { pokemonId: number };
+  NoConnection: undefined;
 };
 
 export type FavoritesStackParamList = {
   FavoritesMain: undefined;
+  Detail: { pokemonId: number };
+  NoConnection: undefined;
 };
 
 const Tab = createBottomTabNavigator<RootTabParamList>();
@@ -72,6 +78,16 @@ export const AppNavigator = () => {
                   component={ExploreScreen}
                   options={{ headerShown: false }}
                 />
+                <ExploreStack.Screen
+                  name="Detail"
+                  component={DetailScreen}
+                  options={{ title: 'Detalle', headerBackTitle: 'Volver' }}
+                />
+                <ExploreStack.Screen
+                  name="NoConnection"
+                  component={NoConnectionScreen}
+                  options={{ title: 'Sin conexión', headerLeft: () => null }}
+                />
               </ExploreStack.Navigator>
             )}
           </Tab.Screen>
@@ -106,6 +122,16 @@ export const AppNavigator = () => {
                   name="FavoritesMain"
                   component={FavoritesScreen}
                   options={{ headerShown: false }}
+                />
+                <FavoritesStack.Screen
+                  name="Detail"
+                  component={DetailScreen}
+                  options={{ title: 'Detalle', headerBackTitle: 'Volver' }}
+                />
+                <FavoritesStack.Screen
+                  name="NoConnection"
+                  component={NoConnectionScreen}
+                  options={{ title: 'Sin conexión', headerLeft: () => null }}
                 />
               </FavoritesStack.Navigator>
             )}
