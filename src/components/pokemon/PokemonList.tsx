@@ -41,6 +41,7 @@ export const PokemonList = ({ onPokemonPress, pokemon: externalPokemon }: Pokemo
       <PokemonCard
         pokemon={item}
         isFavorite={favoriteIds.has(item.id)}
+        style={styles.card}
         onFavoritePress={() => handleFavoritePress(item)}
         onPress={() => onPokemonPress?.(item)}
       />
@@ -77,6 +78,10 @@ const styles = StyleSheet.create({
   },
   cardWrapper: {
     marginBottom: 16,
+  },
+  card: {
+    width: '90%',
+    alignSelf: 'center',
   },
   footer: {
     paddingVertical: 20,

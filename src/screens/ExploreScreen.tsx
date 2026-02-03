@@ -91,4 +91,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  card: {
+    width: '80%',
+    alignSelf: 'center',
+  },
 });

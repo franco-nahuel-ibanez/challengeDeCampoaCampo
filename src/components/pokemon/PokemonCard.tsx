@@ -89,7 +89,7 @@ export const PokemonCard: React.FC<PokemonCardProps> = ({
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: colors.surface,
+    backgroundColor: colors.background,
     borderRadius: 12,
     borderWidth: 1,
     borderColor: colors.border,

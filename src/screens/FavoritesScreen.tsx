@@ -43,6 +43,7 @@ export const FavoritesScreen = () => {
     <View style={styles.cardWrapper}>
       <PokemonCard
         pokemon={item}
+        style={styles.card}
         isFavorite={true}
         onFavoritePress={() => handleFavoritePress(item)}
         onPress={() => handlePokemonPress(item)}
@@ -87,5 +88,9 @@ const styles = StyleSheet.create({
   },
   cardWrapper: {
     marginBottom: 16,
+  },
+  card: {
+    width: '90%',
+    alignSelf: 'center',
   },
 });
