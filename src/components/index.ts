@@ -4,3 +4,7 @@ export * from './ui/OfflineBanner';
 export * from './ui/EmptyState';
 export * from './ui/SearchBar';
 export * from './ui/FavoriteButton';
+export * from './pokemon/TypeBadge';
+export * from './pokemon/PokemonStats';
+export * from './pokemon/PokemonAbilities';
+export * from './pokemon/PokemonDimensions';
