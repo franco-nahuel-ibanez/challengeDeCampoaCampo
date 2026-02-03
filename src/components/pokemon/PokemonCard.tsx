@@ -10,29 +10,22 @@ import { Image } from 'expo-image';
 import { colors } from '@/theme/colors';
 import { Pokemon } from '@/types/pokemon';
 import { FavoriteButton } from '@/components/ui/FavoriteButton';
+import { formatPokemonId } from '@/helpers';
 
 export interface PokemonCardProps {
   pokemon: Pokemon;
   onPress: () => void;
-  isFavorite?: boolean;
-  onFavoritePress?: () => void;
   style?: ViewStyle;
 }
 
 export const PokemonCard: React.FC<PokemonCardProps> = ({
   pokemon,
   onPress,
-  isFavorite = false,
-  onFavoritePress,
   style,
 }) => {
   const displayName =
     pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
-  const idFormatted = `#${String(pokemon.id).padStart(3, '0')}`;
-
-  const handleFavoritePress = (): void => {
-    onFavoritePress?.();
-  };
+  const idFormatted = formatPokemonId(pokemon.id);
 
   return (
     <Pressable
@@ -46,8 +39,7 @@ export const PokemonCard: React.FC<PokemonCardProps> = ({
       accessibilityLabel={`Ver detalle de ${pokemon.name}`}
     >
       <FavoriteButton
-        isFavorite={isFavorite}
-        onPress={handleFavoritePress}
+        pokemon={pokemon}
         style={styles.favoriteWrapper}
       />
 

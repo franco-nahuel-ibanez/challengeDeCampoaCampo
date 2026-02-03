@@ -1,36 +1,32 @@
 import React from 'react';
-import { Pressable, StyleSheet, View, type ViewStyle } from 'react-native';
+import { Pressable, StyleSheet, type ViewStyle } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { usePokemonStore } from '@/store/usePokemonStore';
 import { colors } from '@/theme/colors';
+import type { Pokemon } from '@/types/pokemon';
 
 export interface FavoriteButtonProps {
-  isFavorite: boolean;
-  onPress?: () => void;
+  pokemon: Pokemon;
   size?: number;
   style?: ViewStyle;
 }
 
 export const FavoriteButton: React.FC<FavoriteButtonProps> = ({
-  isFavorite,
-  onPress,
+  pokemon,
   size = 24,
   style,
 }) => {
-  const handlePress = (): void => {
-    onPress?.();
-  };
+  const addFavorite = usePokemonStore((state) => state.addFavorite);
+  const removeFavorite = usePokemonStore((state) => state.removeFavorite);
+  const isFavorite = usePokemonStore((state) => state.isFavorite(pokemon.id));
 
-  if (onPress == null) {
-    return (
-      <View style={[styles.wrapper, style]}>
-        <Ionicons
-          name={isFavorite ? 'heart' : 'heart-outline'}
-          size={size}
-          color={isFavorite ? colors.primary : colors.text}
-        />
-      </View>
-    );
-  }
+  const handlePress = (): void => {
+    if (isFavorite) {
+      removeFavorite(pokemon.id);
+    } else {
+      addFavorite(pokemon);
+    }
+  };
 
   return (
     <Pressable

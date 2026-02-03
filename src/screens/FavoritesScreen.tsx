@@ -15,24 +15,12 @@ export const FavoritesScreen = () => {
   const navigation = useNavigation<FavoritesScreenNavigationProp>();
   const { isConnected } = useNetworkStatus();
   const favorites = usePokemonStore((state) => state.favorites);
-  const removeFavorite = usePokemonStore((state) => state.removeFavorite);
-  const addFavorite = usePokemonStore((state) => state.addFavorite);
-  const isFavorite = usePokemonStore((state) => state.isFavorite);
-
-  const handleFavoritePress = (pokemon: Pokemon) => {
-    if (isFavorite(pokemon.id)) {
-      removeFavorite(pokemon.id);
-    } else {
-      addFavorite(pokemon);
-    }
-  };
 
   const handlePokemonPress = (pokemon: Pokemon) => {
     if (!isConnected) {
       navigation.navigate('NoConnection');
       return;
     }
-
     navigation.navigate('Detail', { pokemonId: pokemon.id });
   };
 
@@ -41,8 +29,6 @@ export const FavoritesScreen = () => {
       <PokemonCard
         pokemon={item}
         style={styles.card}
-        isFavorite={true}
-        onFavoritePress={() => handleFavoritePress(item)}
         onPress={() => handlePokemonPress(item)}
       />
     </View>
