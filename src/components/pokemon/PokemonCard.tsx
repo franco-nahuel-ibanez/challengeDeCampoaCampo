@@ -7,9 +7,9 @@ import {
   type ViewStyle,
 } from 'react-native';
 import { Image } from 'expo-image';
-import { Ionicons } from '@expo/vector-icons';
 import { colors } from '@/theme/colors';
 import { Pokemon } from '@/types/pokemon';
+import { FavoriteButton } from '@/components/ui/FavoriteButton';
 
 export interface PokemonCardProps {
   pokemon: Pokemon;
@@ -45,25 +45,11 @@ export const PokemonCard: React.FC<PokemonCardProps> = ({
       accessibilityRole="button"
       accessibilityLabel={`Ver detalle de ${pokemon.name}`}
     >
-      <Pressable
+      <FavoriteButton
+        isFavorite={isFavorite}
         onPress={handleFavoritePress}
-        style={({ pressed }) => [
-          styles.favoriteWrapper,
-          pressed && styles.favoritePressed,
-        ]}
-        hitSlop={12}
-        accessibilityRole="button"
-        accessibilityLabel={
-          isFavorite ? 'Quitar de favoritos' : 'Añadir a favoritos'
-        }
-        accessibilityState={{ selected: isFavorite }}
-      >
-        <Ionicons
-          name={isFavorite ? 'heart' : 'heart-outline'}
-          size={24}
-          color={isFavorite ? colors.primary : colors.text}
-        />
-      </Pressable>
+        style={styles.favoriteWrapper}
+      />
 
       <Image
         source={{ uri: pokemon.image }}
@@ -126,9 +112,5 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 8,
     right: 8,
-    padding: 4,
-  },
-  favoritePressed: {
-    opacity: 0.7,
   },
 });

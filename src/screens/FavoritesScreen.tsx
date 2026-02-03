@@ -2,9 +2,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { FlashList } from '@shopify/flash-list';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-
-import { PokemonCard } from '../components';
-import { EmptyState } from '../components/ui/EmptyState';
+import { PokemonCard, EmptyState } from '@/components';
 import { useNetworkStatus } from '@/hooks/useNetworkStatus';
 import { usePokemonStore } from '@/store/usePokemonStore';
 import { Pokemon } from '@/types/pokemon';

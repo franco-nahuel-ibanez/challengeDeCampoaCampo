@@ -3,9 +3,9 @@ import { StyleSheet, View, Text, ScrollView, ActivityIndicator } from 'react-nat
 import { useRoute, useNavigation } from '@react-navigation/native';
 import { Image } from 'expo-image';
 
-import { EmptyState } from '../components/ui/EmptyState';
+import { EmptyState } from '@/components';
 import { getPokemonDetail } from '@/api/pokemonApi';
-import { usePokemonStore } from '../store/usePokemonStore';
+import { usePokemonStore } from '@/store/usePokemonStore';
 import { colorsByType, PokemonTypeName } from '@/theme/colors';
 import type { PokemonDetail } from '@/types/pokemon';
 
