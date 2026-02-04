@@ -21,3 +21,5 @@ export const STORAGE_KEYS = {
   POKEMONS: '@pokedex/pokemons',
   FAVORITES: '@pokedex/favorites',
 } as const;
+
+export const MAX_STAT_VALUE = 255;

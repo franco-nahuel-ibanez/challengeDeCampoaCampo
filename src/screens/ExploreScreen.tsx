@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo } from 'react';
+import { useCallback, useEffect, useState, useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -38,13 +38,16 @@ export const ExploreScreen = () => {
     );
   }, [pokemon, searchQuery]);
 
-  const handlePokemonPress = (pokemon: Pokemon) => {
-    if (!isConnected) {
-      navigation.navigate('NoConnection');
-      return;
-    }
-    navigation.navigate('Detail', { pokemonId: pokemon.id });
-  };
+  const handlePokemonPress = useCallback(
+    (pokemon: Pokemon) => {
+      if (!isConnected) {
+        navigation.navigate('NoConnection');
+        return;
+      }
+      navigation.navigate('Detail', { pokemonId: pokemon.id });
+    },
+    [navigation, isConnected]
+  );
 
   if (!isInitialized) {
     return (

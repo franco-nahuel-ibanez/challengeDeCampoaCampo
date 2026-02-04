@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { FlashList } from '@shopify/flash-list';
 import { useNavigation } from '@react-navigation/native';
@@ -16,22 +17,28 @@ export const FavoritesScreen = () => {
   const { isConnected } = useNetworkStatus();
   const favorites = usePokemonStore((state) => state.favorites);
 
-  const handlePokemonPress = (pokemon: Pokemon) => {
-    if (!isConnected) {
-      navigation.navigate('NoConnection');
-      return;
-    }
-    navigation.navigate('Detail', { pokemonId: pokemon.id });
-  };
+  const handlePokemonPress = useCallback(
+    (pokemon: Pokemon) => {
+      if (!isConnected) {
+        navigation.navigate('NoConnection');
+        return;
+      }
+      navigation.navigate('Detail', { pokemonId: pokemon.id });
+    },
+    [navigation, isConnected]
+  );
 
-  const renderItem = ({ item }: { item: Pokemon }) => (
-    <View style={styles.cardWrapper}>
-      <PokemonCard
-        pokemon={item}
-        style={styles.card}
-        onPress={() => handlePokemonPress(item)}
-      />
-    </View>
+  const renderItem = useCallback(
+    ({ item }: { item: Pokemon }) => (
+      <View style={styles.cardWrapper}>
+        <PokemonCard
+          pokemon={item}
+          style={styles.card}
+          onPress={() => handlePokemonPress(item)}
+        />
+      </View>
+    ),
+    [handlePokemonPress]
   );
 
   return (

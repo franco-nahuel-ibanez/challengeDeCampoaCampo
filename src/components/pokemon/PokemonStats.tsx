@@ -1,10 +1,9 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { formatStatName } from '@/helpers/textFormatters';
+import { getStatPercentage } from '@/helpers/statHelpers';
 import { colors } from '@/theme/colors';
 import type { PokemonStat } from '@/types/pokemon';
-
-const MAX_STAT_VALUE = 255;
 
 export interface PokemonStatsProps {
   stats: PokemonStat[];
@@ -15,10 +14,6 @@ export const PokemonStats: React.FC<PokemonStatsProps> = ({
   stats,
   accentColor = colors.primary,
 }) => {
-  const getStatPercentage = (value: number): number => {
-    return Math.min((value / MAX_STAT_VALUE) * 100, 100);
-  };
-
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Estadísticas</Text>
