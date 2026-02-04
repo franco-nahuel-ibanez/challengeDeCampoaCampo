@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import { StyleSheet, View, ActivityIndicator } from 'react-native';
 import { FlashList } from '@shopify/flash-list';
 import { PokemonCard } from './PokemonCard';
@@ -6,7 +7,7 @@ import { colors } from '@/theme/colors';
 import { Pokemon } from '@/types/pokemon';
 
 interface PokemonListProps {
-  onPokemonPress?: (pokemon: Pokemon) => void;
+  onPokemonPress: (pokemon: Pokemon) => void;
   pokemon?: Pokemon[];
 }
 
@@ -17,30 +18,33 @@ export const PokemonList = ({ onPokemonPress, pokemon: externalPokemon }: Pokemo
   const hasNextPage = usePokemonStore((state) => state.hasNextPage);
   const loadNextPage = usePokemonStore((state) => state.loadNextPage);
 
-  const handleEndReached = () => {
+  const handleEndReached = useCallback(() => {
     if (!externalPokemon && hasNextPage && !isLoading) {
       loadNextPage();
     }
-  };
+  }, [externalPokemon, hasNextPage, isLoading, loadNextPage]);
 
-  const renderItem = ({ item }: { item: Pokemon }) => (
-    <View style={styles.cardWrapper}>
-      <PokemonCard
-        pokemon={item}
-        style={styles.card}
-        onPress={() => onPokemonPress?.(item)}
-      />
-    </View>
+  const renderItem = useCallback(
+    ({ item }: { item: Pokemon }) => (
+      <View style={styles.cardWrapper}>
+        <PokemonCard
+          pokemon={item}
+          style={styles.card}
+          onPress={() => onPokemonPress(item)}
+        />
+      </View>
+    ),
+    [onPokemonPress]
   );
 
-  const renderFooter = () => {
+  const renderFooter = useCallback(() => {
     if (!isLoading) return null;
     return (
       <View style={styles.footer}>
         <ActivityIndicator size="small" color={colors.primary} />
       </View>
     );
-  };
+  }, [isLoading]);
 
   return (
     <FlashList

@@ -8,7 +8,14 @@ import {
 } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import { Image } from 'expo-image';
-import { EmptyState, TypeBadge, PokemonStats, PokemonAbilities, PokemonDimensions } from '@/components';
+import {
+  EmptyState,
+  FavoriteButton,
+  TypeBadge,
+  PokemonStats,
+  PokemonAbilities,
+  PokemonDimensions,
+} from '@/components';
 import { getPokemonDetail } from '@/api/pokemonApi';
 import { capitalize, formatPokemonId } from '@/helpers/textFormatters';
 import { getPrimaryTypeColor, rgbaWithOpacity } from '@/helpers/colorUtils';
@@ -77,6 +84,12 @@ export const DetailScreen = () => {
   const primaryColor = getPrimaryTypeColor(pokemon.types);
   const primaryColorWithOpacity = rgbaWithOpacity(primaryColor, 0.1);
 
+  const pokemonForFavorite: { id: number; name: string; image: string } = {
+    id: pokemon.id,
+    name: pokemon.name,
+    image: pokemon.image,
+  };
+
   return (
     <ScrollView
       style={styles.container}
@@ -88,6 +101,11 @@ export const DetailScreen = () => {
           { backgroundColor: primaryColorWithOpacity },
         ]}
       >
+        <FavoriteButton
+          pokemon={pokemonForFavorite}
+          size={28}
+          style={styles.favoriteButton}
+        />
         <Image
           source={{ uri: pokemon.imageHD }}
           style={styles.image}
@@ -140,6 +158,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 16,
+  },
+  favoriteButton: {
+    position: 'absolute',
+    top: 12,
+    right: 12,
+    zIndex: 1,
   },
   image: {
     width: 250,
